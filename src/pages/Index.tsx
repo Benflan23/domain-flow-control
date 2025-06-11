@@ -112,7 +112,7 @@ const Index = () => {
 
   const deleteDomain = (id: string) => {
     setDomains(domains.filter(domain => domain.id !== id));
-    setEvaluations(evaluations.filter(eval => eval.domainId !== id));
+    setEvaluations(evaluations.filter(evaluation => evaluation.domainId !== id));
   };
 
   const addEvaluation = (evaluation: Omit<Evaluation, 'id'>) => {
