@@ -24,13 +24,24 @@ const AddDomainModal: React.FC<AddDomainModalProps> = ({
   registrars,
   categories
 }) => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<{
+    name: string;
+    registrar: string;
+    category: string;
+    purchaseDate: string;
+    expirationDate: string;
+    status: 'actif' | 'vendu' | 'expire' | 'en-vente';
+    purchasePrice: number;
+    salePrice: number;
+    saleDate: string;
+    buyer: string;
+  }>({
     name: '',
     registrar: '',
     category: '',
     purchaseDate: '',
     expirationDate: '',
-    status: 'actif' as const,
+    status: 'actif',
     purchasePrice: 0,
     salePrice: 0,
     saleDate: '',
