@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Dashboard from '@/components/Dashboard';
 import DomainList from '@/components/DomainList';
 import AddDomainModal from '@/components/AddDomainModal';
+import BulkDomainManager from '@/components/BulkDomainManager';
 import EvaluationSection from '@/components/EvaluationSection';
 import ROIStatistics from '@/components/ROIStatistics';
 import SalesHistory from '@/components/SalesHistory';
