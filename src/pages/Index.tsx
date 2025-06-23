@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Dashboard from '@/components/Dashboard';
 import DomainList from '@/components/DomainList';
@@ -105,6 +104,14 @@ const Index = () => {
     setDomains([...domains, newDomain]);
   };
 
+  const addMultipleDomains = (newDomains: Omit<Domain, 'id'>[]) => {
+    const domainsWithIds: Domain[] = newDomains.map((domain, index) => ({
+      ...domain,
+      id: (Date.now() + index).toString()
+    }));
+    setDomains([...domains, ...domainsWithIds]);
+  };
+
   const updateDomain = (updatedDomain: Domain) => {
     setDomains(domains.map(domain => 
       domain.id === updatedDomain.id ? updatedDomain : domain
@@ -137,9 +144,10 @@ const Index = () => {
         </div>
 
         <Tabs defaultValue="dashboard" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-6 lg:grid-cols-6">
+          <TabsList className="grid w-full grid-cols-7 lg:grid-cols-7">
             <TabsTrigger value="dashboard">Tableau de bord</TabsTrigger>
             <TabsTrigger value="domains">Domaines</TabsTrigger>
+            <TabsTrigger value="import-export">Import/Export</TabsTrigger>
             <TabsTrigger value="evaluation">Évaluation</TabsTrigger>
             <TabsTrigger value="statistics">Statistiques</TabsTrigger>
             <TabsTrigger value="sales">Ventes</TabsTrigger>
@@ -156,6 +164,15 @@ const Index = () => {
               onEdit={setEditingDomain}
               onDelete={deleteDomain}
               onAdd={() => setIsAddModalOpen(true)}
+            />
+          </TabsContent>
+
+          <TabsContent value="import-export">
+            <BulkDomainManager
+              domains={domains}
+              onImportDomains={addMultipleDomains}
+              registrars={customLists.registrars}
+              categories={customLists.categories}
             />
           </TabsContent>
 
