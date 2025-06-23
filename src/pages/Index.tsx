@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Dashboard from '@/components/Dashboard';
 import DomainList from '@/components/DomainList';
@@ -133,25 +134,40 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      <div className="container mx-auto px-4 py-8">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
+      <div className="container mx-auto px-2 sm:px-4 py-4 sm:py-8">
+        <div className="mb-4 sm:mb-8">
+          <h1 className="text-2xl sm:text-4xl font-bold text-gray-900 mb-2">
             Gestion de Domaines
           </h1>
-          <p className="text-lg text-gray-600">
+          <p className="text-sm sm:text-lg text-gray-600">
             Gérez votre portefeuille de noms de domaine efficacement
           </p>
         </div>
 
-        <Tabs defaultValue="dashboard" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-7 lg:grid-cols-7">
-            <TabsTrigger value="dashboard">Tableau de bord</TabsTrigger>
-            <TabsTrigger value="domains">Domaines</TabsTrigger>
-            <TabsTrigger value="import-export">Import/Export</TabsTrigger>
-            <TabsTrigger value="evaluation">Évaluation</TabsTrigger>
-            <TabsTrigger value="statistics">Statistiques</TabsTrigger>
-            <TabsTrigger value="sales">Ventes</TabsTrigger>
-            <TabsTrigger value="settings">Paramètres</TabsTrigger>
+        <Tabs defaultValue="dashboard" className="space-y-4 sm:space-y-6">
+          <TabsList className="grid w-full grid-cols-3 sm:grid-cols-4 lg:grid-cols-7 h-auto gap-1 p-1">
+            <TabsTrigger value="dashboard" className="text-xs sm:text-sm px-2 py-2">
+              <span className="hidden sm:inline">Tableau de bord</span>
+              <span className="sm:hidden">Dashboard</span>
+            </TabsTrigger>
+            <TabsTrigger value="domains" className="text-xs sm:text-sm px-2 py-2">Domaines</TabsTrigger>
+            <TabsTrigger value="import-export" className="text-xs sm:text-sm px-2 py-2">
+              <span className="hidden sm:inline">Import/Export</span>
+              <span className="sm:hidden">Import</span>
+            </TabsTrigger>
+            <TabsTrigger value="evaluation" className="text-xs sm:text-sm px-2 py-2">
+              <span className="hidden sm:inline">Évaluation</span>
+              <span className="sm:hidden">Eval</span>
+            </TabsTrigger>
+            <TabsTrigger value="statistics" className="text-xs sm:text-sm px-2 py-2">
+              <span className="hidden sm:inline">Statistiques</span>
+              <span className="sm:hidden">Stats</span>
+            </TabsTrigger>
+            <TabsTrigger value="sales" className="text-xs sm:text-sm px-2 py-2">Ventes</TabsTrigger>
+            <TabsTrigger value="settings" className="text-xs sm:text-sm px-2 py-2">
+              <span className="hidden sm:inline">Paramètres</span>
+              <span className="sm:hidden">Config</span>
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="dashboard">

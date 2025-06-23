@@ -52,17 +52,17 @@ const Dashboard: React.FC<DashboardProps> = ({ domains, sales }) => {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6">
       {cards.map((card, index) => (
         <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-gray-600">
               {card.title}
             </CardTitle>
-            <card.icon className={`h-6 w-6 ${card.color}`} />
+            <card.icon className={`h-5 w-5 sm:h-6 sm:w-6 ${card.color}`} />
           </CardHeader>
           <CardContent>
-            <div className={`text-3xl font-bold ${card.color} mb-1`}>
+            <div className={`text-2xl sm:text-3xl font-bold ${card.color} mb-1`}>
               {card.value}
             </div>
             <p className="text-xs text-gray-500">

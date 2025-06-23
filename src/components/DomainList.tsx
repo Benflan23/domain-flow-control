@@ -30,15 +30,57 @@ const DomainList: React.FC<DomainListProps> = ({ domains, onEdit, onDelete, onAd
 
   return (
     <Card>
-      <CardHeader className="flex flex-row items-center justify-between">
-        <CardTitle>Liste des Domaines</CardTitle>
-        <Button onClick={onAdd} className="flex items-center gap-2">
+      <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center justify-between space-y-2 sm:space-y-0">
+        <CardTitle className="text-lg sm:text-xl">Liste des Domaines</CardTitle>
+        <Button onClick={onAdd} className="flex items-center gap-2 w-full sm:w-auto">
           <Plus className="h-4 w-4" />
-          Ajouter un domaine
+          <span className="hidden sm:inline">Ajouter un domaine</span>
+          <span className="sm:hidden">Ajouter</span>
         </Button>
       </CardHeader>
-      <CardContent>
-        <div className="overflow-x-auto">
+      <CardContent className="p-2 sm:p-6">
+        {/* Vue mobile - Cards */}
+        <div className="block sm:hidden space-y-4">
+          {domains.map((domain) => (
+            <Card key={domain.id} className="p-4">
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <h3 className="font-mono text-sm font-semibold truncate">{domain.name}</h3>
+                  <Badge className={`${getStatusColor(domain.status)} text-xs`}>
+                    {domain.status}
+                  </Badge>
+                </div>
+                <div className="text-xs text-gray-600 space-y-1">
+                  <div>Registrar: {domain.registrar}</div>
+                  <div>Catégorie: {domain.category}</div>
+                  <div>Expiration: {formatDate(domain.expirationDate)}</div>
+                </div>
+                <div className="flex gap-2 pt-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => onEdit(domain)}
+                    className="flex-1"
+                  >
+                    <Edit className="h-3 w-3 mr-1" />
+                    Modifier
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => onDelete(domain.id)}
+                    className="text-red-600 hover:text-red-700"
+                  >
+                    <Trash2 className="h-3 w-3" />
+                  </Button>
+                </div>
+              </div>
+            </Card>
+          ))}
+        </div>
+
+        {/* Vue desktop - Table */}
+        <div className="hidden sm:block overflow-x-auto">
           <table className="w-full">
             <thead>
               <tr className="border-b">
@@ -85,13 +127,13 @@ const DomainList: React.FC<DomainListProps> = ({ domains, onEdit, onDelete, onAd
               ))}
             </tbody>
           </table>
-          
-          {domains.length === 0 && (
-            <div className="text-center py-8 text-gray-500">
-              Aucun domaine enregistré. Cliquez sur "Ajouter un domaine" pour commencer.
-            </div>
-          )}
         </div>
+        
+        {domains.length === 0 && (
+          <div className="text-center py-8 text-gray-500">
+            Aucun domaine enregistré. Cliquez sur "Ajouter un domaine" pour commencer.
+          </div>
+        )}
       </CardContent>
     </Card>
   );
