@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Dashboard from '@/components/Dashboard';
 import DomainList from '@/components/DomainList';
@@ -162,7 +163,7 @@ const Index = () => {
             </TabsTrigger>
             <TabsTrigger value="statistics" className="text-[10px] xs:text-xs sm:text-sm px-1 py-2 min-w-0">
               <span className="hidden sm:inline">Statistiques</span>
-              <span className="sm:hidden truncate">Stats</span>
+              <span className="sm:hidden truncate">Statistics</span>
             </TabsTrigger>
             <TabsTrigger value="sales" className="text-[10px] xs:text-xs sm:text-sm px-1 py-2 min-w-0">
               <span className="truncate">Ventes</span>
