@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Dashboard from '@/components/Dashboard';
 import DomainList from '@/components/DomainList';
@@ -145,28 +144,32 @@ const Index = () => {
         </div>
 
         <Tabs defaultValue="dashboard" className="space-y-4 sm:space-y-6">
-          <TabsList className="grid w-full grid-cols-3 sm:grid-cols-4 lg:grid-cols-7 h-auto gap-1 p-1">
-            <TabsTrigger value="dashboard" className="text-xs sm:text-sm px-2 py-2">
+          <TabsList className="grid w-full grid-cols-3 sm:grid-cols-4 lg:grid-cols-7 h-auto gap-0.5 p-1">
+            <TabsTrigger value="dashboard" className="text-[10px] xs:text-xs sm:text-sm px-1 py-2 min-w-0">
               <span className="hidden sm:inline">Tableau de bord</span>
-              <span className="sm:hidden">Dashboard</span>
+              <span className="sm:hidden truncate">Board</span>
             </TabsTrigger>
-            <TabsTrigger value="domains" className="text-xs sm:text-sm px-2 py-2">Domaines</TabsTrigger>
-            <TabsTrigger value="import-export" className="text-xs sm:text-sm px-2 py-2">
+            <TabsTrigger value="domains" className="text-[10px] xs:text-xs sm:text-sm px-1 py-2 min-w-0">
+              <span className="truncate">Domaines</span>
+            </TabsTrigger>
+            <TabsTrigger value="import-export" className="text-[10px] xs:text-xs sm:text-sm px-1 py-2 min-w-0">
               <span className="hidden sm:inline">Import/Export</span>
-              <span className="sm:hidden">Import</span>
+              <span className="sm:hidden truncate">Import</span>
             </TabsTrigger>
-            <TabsTrigger value="evaluation" className="text-xs sm:text-sm px-2 py-2">
+            <TabsTrigger value="evaluation" className="text-[10px] xs:text-xs sm:text-sm px-1 py-2 min-w-0">
               <span className="hidden sm:inline">Évaluation</span>
-              <span className="sm:hidden">Eval</span>
+              <span className="sm:hidden truncate">Eval</span>
             </TabsTrigger>
-            <TabsTrigger value="statistics" className="text-xs sm:text-sm px-2 py-2">
+            <TabsTrigger value="statistics" className="text-[10px] xs:text-xs sm:text-sm px-1 py-2 min-w-0">
               <span className="hidden sm:inline">Statistiques</span>
-              <span className="sm:hidden">Stats</span>
+              <span className="sm:hidden truncate">Stats</span>
             </TabsTrigger>
-            <TabsTrigger value="sales" className="text-xs sm:text-sm px-2 py-2">Ventes</TabsTrigger>
-            <TabsTrigger value="settings" className="text-xs sm:text-sm px-2 py-2">
+            <TabsTrigger value="sales" className="text-[10px] xs:text-xs sm:text-sm px-1 py-2 min-w-0">
+              <span className="truncate">Ventes</span>
+            </TabsTrigger>
+            <TabsTrigger value="settings" className="text-[10px] xs:text-xs sm:text-sm px-1 py-2 min-w-0">
               <span className="hidden sm:inline">Paramètres</span>
-              <span className="sm:hidden">Config</span>
+              <span className="sm:hidden truncate">Config</span>
             </TabsTrigger>
           </TabsList>
 
