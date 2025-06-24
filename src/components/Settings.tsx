@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -27,7 +27,7 @@ const Settings: React.FC<SettingsProps> = ({ customLists, onUpdateLists }) => {
     evaluationTool: ''
   });
 
-  const addItem = (listType: 'registrars' | 'categories' | 'evaluationTools', value: string) => {
+  const addItem = useCallback((listType: 'registrars' | 'categories' | 'evaluationTools', value: string) => {
     if (value.trim() && !customLists[listType].includes(value.trim())) {
       const newLists = {
         ...customLists,
@@ -37,25 +37,29 @@ const Settings: React.FC<SettingsProps> = ({ customLists, onUpdateLists }) => {
       
       const key = listType === 'registrars' ? 'registrar' : 
                   listType === 'categories' ? 'category' : 'evaluationTool';
-      setNewItems({ ...newItems, [key]: '' });
+      setNewItems(prev => ({ ...prev, [key]: '' }));
     }
-  };
+  }, [customLists, onUpdateLists]);
 
-  const removeItem = (listType: 'registrars' | 'categories' | 'evaluationTools', value: string) => {
+  const removeItem = useCallback((listType: 'registrars' | 'categories' | 'evaluationTools', value: string) => {
     const newLists = {
       ...customLists,
       [listType]: customLists[listType].filter(item => item !== value)
     };
     onUpdateLists(newLists);
-  };
+  }, [customLists, onUpdateLists]);
+
+  const updateNewValue = useCallback((field: string, value: string) => {
+    setNewItems(prev => ({ ...prev, [field]: value }));
+  }, []);
 
   const ListManager: React.FC<{
     title: string;
     items: string[];
     listType: 'registrars' | 'categories' | 'evaluationTools';
     newValue: string;
-    onNewValueChange: (value: string) => void;
-  }> = ({ title, items, listType, newValue, onNewValueChange }) => (
+    fieldKey: string;
+  }> = React.memo(({ title, items, listType, newValue, fieldKey }) => (
     <Card>
       <CardHeader>
         <CardTitle className="text-lg">{title}</CardTitle>
@@ -65,7 +69,7 @@ const Settings: React.FC<SettingsProps> = ({ customLists, onUpdateLists }) => {
           <div className="flex gap-2">
             <Input
               value={newValue}
-              onChange={(e) => onNewValueChange(e.target.value)}
+              onChange={(e) => updateNewValue(fieldKey, e.target.value)}
               placeholder={`Nouveau ${title.toLowerCase()}`}
               onKeyPress={(e) => {
                 if (e.key === 'Enter') {
@@ -98,7 +102,7 @@ const Settings: React.FC<SettingsProps> = ({ customLists, onUpdateLists }) => {
         </div>
       </CardContent>
     </Card>
-  );
+  ));
 
   return (
     <div className="space-y-6">
@@ -123,7 +127,7 @@ const Settings: React.FC<SettingsProps> = ({ customLists, onUpdateLists }) => {
           items={customLists.registrars}
           listType="registrars"
           newValue={newItems.registrar}
-          onNewValueChange={(value) => setNewItems({ ...newItems, registrar: value })}
+          fieldKey="registrar"
         />
 
         <ListManager
@@ -131,7 +135,7 @@ const Settings: React.FC<SettingsProps> = ({ customLists, onUpdateLists }) => {
           items={customLists.categories}
           listType="categories"
           newValue={newItems.category}
-          onNewValueChange={(value) => setNewItems({ ...newItems, category: value })}
+          fieldKey="category"
         />
 
         <ListManager
@@ -139,7 +143,7 @@ const Settings: React.FC<SettingsProps> = ({ customLists, onUpdateLists }) => {
           items={customLists.evaluationTools}
           listType="evaluationTools"
           newValue={newItems.evaluationTool}
-          onNewValueChange={(value) => setNewItems({ ...newItems, evaluationTool: value })}
+          fieldKey="evaluationTool"
         />
       </div>
 
