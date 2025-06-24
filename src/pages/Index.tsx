@@ -154,11 +154,11 @@ const Index = () => {
             </TabsTrigger>
             <TabsTrigger value="import-export" className="text-[10px] xs:text-xs sm:text-sm px-1 py-2 min-w-0">
               <span className="hidden sm:inline">Import/Export</span>
-              <span className="sm:hidden truncate">Import</span>
+              <span className="sm:hidden truncate">Import/Export</span>
             </TabsTrigger>
             <TabsTrigger value="evaluation" className="text-[10px] xs:text-xs sm:text-sm px-1 py-2 min-w-0">
               <span className="hidden sm:inline">Évaluation</span>
-              <span className="sm:hidden truncate">Eval</span>
+              <span className="sm:hidden truncate">Evaluation</span>
             </TabsTrigger>
             <TabsTrigger value="statistics" className="text-[10px] xs:text-xs sm:text-sm px-1 py-2 min-w-0">
               <span className="hidden sm:inline">Statistiques</span>
